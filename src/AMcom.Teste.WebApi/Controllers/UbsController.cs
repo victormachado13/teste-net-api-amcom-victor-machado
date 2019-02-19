@@ -1,0 +1,22 @@
+﻿using AMcom.Teste.Service;
+using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+
+namespace AMcom.Teste.WebApi.Controllers
+{    
+    [Route("api/ubs")]    
+    public class UbsController : ControllerBase
+    {
+        private UbsService ubsService = new UbsService();
+
+        // Implemente um método que seja acessível por HTTP GET e retorne a lista das 5 UBSs
+        // (Unidades Básicas de Saúde) mas próximas de um ponto (latitude e longitude) e ordenada
+        // por avaliação (da melhor para a pior). O retorno deve ser no formato JSON.                      
+
+        [HttpGet("{latitude}/{longitude}")]
+        public IEnumerable<UbsDTO> Localizar(double latitude, double longitude)
+        {
+            return ubsService.Buscar(latitude, longitude);
+        }
+    }
+}
